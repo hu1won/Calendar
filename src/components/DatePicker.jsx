@@ -12,26 +12,28 @@ const DatePicker = ({ selectedDate, onDateChange }) => {
 
   return (
     <div>
-      <div style={{ marginBottom: '20px' }}>
+      <div style={{ marginBottom: '24px' }}>
         <h3 style={{ 
-          fontSize: '14px', 
-          fontWeight: '600', 
+          fontSize: '16px', 
+          fontWeight: '700', 
           color: '#111827', 
-          marginBottom: '4px',
-          letterSpacing: '-0.01em'
+          marginBottom: '6px',
+          letterSpacing: '-0.02em',
+          lineHeight: '1.4'
         }}>
           날짜 선택
         </h3>
         <p style={{ 
-          fontSize: '11px', 
-          color: '#9ca3af', 
+          fontSize: '12px', 
+          color: '#6b7280', 
           margin: 0,
-          fontWeight: '400'
+          fontWeight: '500',
+          letterSpacing: '0.01em'
         }}>
           원하는 날짜를 클릭하세요
         </p>
       </div>
-      <div className="calendar-wrapper">
+      <div className="calendar-wrapper" style={{ width: '100%', overflow: 'visible', boxSizing: 'border-box' }}>
         <Calendar
           onChange={handleDateChange}
           value={selectedDate}

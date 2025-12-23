@@ -19,7 +19,7 @@ const Sidebar = ({ selectedDate, onDateChange, isOpen, onToggle }) => {
     left: 0,
     top: 0,
     height: '100vh',
-    backgroundColor: isOpen ? '#fafafa' : (isMobile ? 'transparent' : '#fafafa'),
+    background: isOpen ? 'linear-gradient(to bottom, #ffffff 0%, #fafafa 100%)' : (isMobile ? 'transparent' : 'linear-gradient(to bottom, #ffffff 0%, #fafafa 100%)'),
     borderRight: isOpen ? '1px solid #e5e7eb' : 'none',
     transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
     zIndex: 40,
@@ -27,76 +27,82 @@ const Sidebar = ({ selectedDate, onDateChange, isOpen, onToggle }) => {
     display: 'flex',
     flexDirection: 'column',
     flexShrink: 0,
-    width: isOpen ? '300px' : (isMobile ? '0' : '72px'),
+    width: isOpen ? '320px' : (isMobile ? '0' : '72px'),
     transform: isOpen ? 'translateX(0)' : (isMobile ? 'translateX(-100%)' : 'translateX(0)'),
+    boxShadow: isOpen && !isMobile ? '2px 0 8px rgba(0, 0, 0, 0.04)' : 'none',
   };
 
   const toggleButtonStyle = {
     position: 'fixed',
-    left: '20px',
-    top: '20px',
+    left: '24px',
+    top: '24px',
     zIndex: 50,
-    backgroundColor: 'rgba(255, 255, 255, 0.95)',
+    background: 'linear-gradient(135deg, rgba(255, 255, 255, 0.98) 0%, rgba(255, 255, 255, 0.95) 100%)',
     color: '#374151',
-    padding: '10px',
-    borderRadius: '8px',
-    border: '1px solid #e5e7eb',
+    padding: '12px',
+    borderRadius: '12px',
+    border: '1px solid rgba(229, 231, 235, 0.8)',
     cursor: 'pointer',
-    transition: 'all 0.2s ease',
+    transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
     display: isMobile ? 'flex' : 'none',
     alignItems: 'center',
     justifyContent: 'center',
-    backdropFilter: 'blur(8px)',
-    boxShadow: '0 1px 3px rgba(0, 0, 0, 0.05)',
+    backdropFilter: 'blur(12px) saturate(180%)',
+    boxShadow: '0 4px 16px rgba(0, 0, 0, 0.08), 0 1px 3px rgba(0, 0, 0, 0.05)',
   };
 
   const desktopToggleStyle = {
     position: 'absolute',
-    top: '20px',
-    right: '20px',
+    top: '24px',
+    right: '24px',
     zIndex: 50,
-    backgroundColor: 'transparent',
+    background: 'linear-gradient(135deg, #f9fafb 0%, #f3f4f6 100%)',
     color: '#6b7280',
-    padding: '8px',
-    borderRadius: '6px',
-    border: 'none',
+    padding: '10px',
+    borderRadius: '10px',
+    border: '1px solid #e5e7eb',
     cursor: 'pointer',
-    transition: 'all 0.2s ease',
+    transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
     display: !isMobile && isOpen ? 'flex' : 'none',
     alignItems: 'center',
     justifyContent: 'center',
+    boxShadow: '0 2px 8px rgba(0, 0, 0, 0.04)',
   };
 
   const contentStyle = {
-    padding: '24px',
-    paddingTop: isMobile ? '80px' : '24px',
+    padding: '24px 20px',
+    paddingTop: isMobile ? '88px' : '24px',
     overflowY: 'hidden',
-    overflow: 'hidden',
+    overflow: 'visible',
     flex: 1,
-    transition: 'all 0.3s',
+    transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
     display: isOpen ? 'block' : (isMobile ? 'block' : 'none'),
     maxHeight: '100vh',
+    width: '100%',
+    boxSizing: 'border-box',
   };
 
   const headerStyle = {
-    marginBottom: '28px',
-    paddingBottom: '20px',
-    borderBottom: '1px solid #f3f4f6',
+    marginBottom: '32px',
+    paddingBottom: '24px',
+    borderBottom: '2px solid #f3f4f6',
   };
 
   const titleStyle = {
-    fontSize: '20px',
-    fontWeight: '600',
+    fontSize: '22px',
+    fontWeight: '700',
     color: '#111827',
-    marginBottom: '6px',
-    letterSpacing: '-0.01em',
+    marginBottom: '8px',
+    letterSpacing: '-0.02em',
+    lineHeight: '1.3',
   };
 
   const subtitleStyle = {
     fontSize: '13px',
     color: '#6b7280',
     marginTop: '4px',
-    fontWeight: '400',
+    fontWeight: '500',
+    letterSpacing: '0.01em',
   };
 
   const datePickerContainerStyle = {
@@ -117,16 +123,17 @@ const Sidebar = ({ selectedDate, onDateChange, isOpen, onToggle }) => {
   };
 
   const collapsedIconStyle = {
-    backgroundColor: 'transparent',
-    color: '#9ca3af',
-    padding: '10px',
-    borderRadius: '8px',
-    marginBottom: '12px',
+    background: 'linear-gradient(135deg, #f9fafb 0%, #f3f4f6 100%)',
+    color: '#6366f1',
+    padding: '12px',
+    borderRadius: '12px',
+    marginBottom: '16px',
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
-    transition: 'all 0.2s ease',
-    border: '1px solid #f3f4f6',
+    transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
+    border: '1px solid #e5e7eb',
+    boxShadow: '0 2px 8px rgba(0, 0, 0, 0.04)',
   };
 
   const collapsedTextStyle = {
@@ -154,12 +161,16 @@ const Sidebar = ({ selectedDate, onDateChange, isOpen, onToggle }) => {
         onClick={onToggle}
         style={toggleButtonStyle}
         onMouseEnter={(e) => {
-          e.currentTarget.style.backgroundColor = '#ffffff';
-          e.currentTarget.style.borderColor = '#d1d5db';
+          e.currentTarget.style.background = 'linear-gradient(135deg, #ffffff 0%, #f9fafb 100%)';
+          e.currentTarget.style.borderColor = '#6366f1';
+          e.currentTarget.style.boxShadow = '0 6px 20px rgba(99, 102, 241, 0.15), 0 2px 6px rgba(0, 0, 0, 0.08)';
+          e.currentTarget.style.transform = 'translateY(-2px)';
         }}
         onMouseLeave={(e) => {
-          e.currentTarget.style.backgroundColor = 'rgba(255, 255, 255, 0.95)';
-          e.currentTarget.style.borderColor = '#e5e7eb';
+          e.currentTarget.style.background = 'linear-gradient(135deg, rgba(255, 255, 255, 0.98) 0%, rgba(255, 255, 255, 0.95) 100%)';
+          e.currentTarget.style.borderColor = 'rgba(229, 231, 235, 0.8)';
+          e.currentTarget.style.boxShadow = '0 4px 16px rgba(0, 0, 0, 0.08), 0 1px 3px rgba(0, 0, 0, 0.05)';
+          e.currentTarget.style.transform = 'translateY(0)';
         }}
         aria-label="사이드바 토글"
       >
@@ -188,12 +199,18 @@ const Sidebar = ({ selectedDate, onDateChange, isOpen, onToggle }) => {
             onClick={onToggle}
             style={desktopToggleStyle}
             onMouseEnter={(e) => {
-              e.currentTarget.style.backgroundColor = '#f9fafb';
-              e.currentTarget.style.color = '#374151';
+              e.currentTarget.style.background = 'linear-gradient(135deg, #6366f1 0%, #4f46e5 100%)';
+              e.currentTarget.style.color = 'white';
+              e.currentTarget.style.borderColor = '#6366f1';
+              e.currentTarget.style.boxShadow = '0 4px 12px rgba(99, 102, 241, 0.3)';
+              e.currentTarget.style.transform = 'translateY(-2px)';
             }}
             onMouseLeave={(e) => {
-              e.currentTarget.style.backgroundColor = 'transparent';
+              e.currentTarget.style.background = 'linear-gradient(135deg, #f9fafb 0%, #f3f4f6 100%)';
               e.currentTarget.style.color = '#6b7280';
+              e.currentTarget.style.borderColor = '#e5e7eb';
+              e.currentTarget.style.boxShadow = '0 2px 8px rgba(0, 0, 0, 0.04)';
+              e.currentTarget.style.transform = 'translateY(0)';
             }}
             aria-label="사이드바 토글"
           >

@@ -103,6 +103,63 @@ const CalendarPage = () => {
     setSelectedDate(date);
   };
 
+  // 시간 헤더와 컨텐츠의 열 너비 동기화
+  useEffect(() => {
+    if (currentView !== Views.WEEK && currentView !== Views.DAY) return;
+
+    const syncColumnWidths = () => {
+      const headerContent = document.querySelector('.rbc-time-header-content table');
+      const timeContent = document.querySelector('.rbc-time-content table');
+      
+      if (headerContent && timeContent) {
+        const headerCols = headerContent.querySelectorAll('colgroup col');
+        const contentCols = timeContent.querySelectorAll('colgroup col');
+        
+        if (headerCols.length === contentCols.length && headerCols.length > 0) {
+          contentCols.forEach((col, index) => {
+            const headerCol = headerCols[index];
+            if (headerCol && col) {
+              const headerWidth = headerCol.offsetWidth || headerCol.getBoundingClientRect().width;
+              if (headerWidth > 0) {
+                col.style.width = `${headerWidth}px`;
+                col.style.minWidth = `${headerWidth}px`;
+                col.style.maxWidth = `${headerWidth}px`;
+              }
+            }
+          });
+        }
+      }
+    };
+
+    // 초기 동기화 (약간의 지연 후)
+    const timer1 = setTimeout(syncColumnWidths, 100);
+    const timer2 = setTimeout(syncColumnWidths, 500);
+    
+    // 리사이즈 및 스크롤 시 동기화
+    const timeContent = document.querySelector('.rbc-time-content');
+    if (timeContent) {
+      timeContent.addEventListener('scroll', syncColumnWidths);
+      window.addEventListener('resize', syncColumnWidths);
+      
+      // MutationObserver로 DOM 변경 감지
+      const observer = new MutationObserver(syncColumnWidths);
+      observer.observe(timeContent, { childList: true, subtree: true });
+      
+      return () => {
+        clearTimeout(timer1);
+        clearTimeout(timer2);
+        timeContent.removeEventListener('scroll', syncColumnWidths);
+        window.removeEventListener('resize', syncColumnWidths);
+        observer.disconnect();
+      };
+    }
+
+    return () => {
+      clearTimeout(timer1);
+      clearTimeout(timer2);
+    };
+  }, [currentView, selectedDate]);
+
   return (
     <div style={{ width: '100%', height: '100vh', backgroundColor: '#ffffff', display: 'flex', position: 'relative', overflow: 'hidden', margin: 0, padding: 0 }}>
       {/* Sidebar */}
@@ -146,12 +203,36 @@ const CalendarPage = () => {
             display: 'flex',
             flexDirection: 'column',
             overflow: 'hidden',
+            overflowX: 'visible',
+            boxSizing: 'border-box',
           }}>
             {/* Header */}
-            <div style={{ marginBottom: '0', flexShrink: 0, paddingLeft: '32px', paddingRight: '32px', paddingTop: '28px', paddingBottom: '20px' }}>
+            <div style={{ 
+              marginBottom: '0', 
+              flexShrink: 0, 
+              paddingLeft: '40px', 
+              paddingRight: '40px', 
+              paddingTop: '36px', 
+              paddingBottom: '28px',
+              background: 'linear-gradient(to bottom, #ffffff 0%, #fafafa 100%)',
+              borderBottom: '1px solid #e5e7eb'
+            }}>
               <Header category="App" title="Calendar" />
             </div>
-            <div style={{ flex: 1, overflow: 'hidden', minHeight: 0, position: 'relative', width: '100%', paddingLeft: 0, paddingRight: 0 }}>
+            <div style={{ 
+              flex: 1, 
+              overflow: 'hidden', 
+              overflowX: 'visible',
+              minHeight: 0, 
+              position: 'relative', 
+              width: '100%', 
+              paddingLeft: '40px', 
+              paddingRight: '32px',
+              paddingTop: '24px',
+              paddingBottom: '24px',
+              background: '#ffffff',
+              boxSizing: 'border-box'
+            }}>
               <DnDCalendar
                 localizer={localizer}
                 events={events}
@@ -167,6 +248,8 @@ const CalendarPage = () => {
                 onEventResize={resizeEvent}
                 eventPropGetter={eventStyleGetter}
                 formats={formats}
+                min={new Date(2025, 0, 1, 8, 0, 0)} // 오전 8시부터 시작
+                max={new Date(2025, 0, 1, 23, 0, 0)} // 오후 11시까지
                 messages={{
                   next: '다음',
                   previous: '이전',

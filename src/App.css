@@ -1,213 +1,324 @@
-/* React Big Calendar Styles */
+/* ============================================
+   React Calendar (사이드바 날짜 선택) - 전통적인 달력 디자인
+   ============================================ */
 .react-calendar {
   width: 100%;
+  max-width: 100%;
   border: none;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+  font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Noto Sans KR', 'Inter', sans-serif;
   background: transparent;
+  padding: 0;
+  box-sizing: border-box;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.calendar-wrapper {
+  width: 100%;
+  overflow: visible;
+  box-sizing: border-box;
 }
 
 .react-calendar__navigation {
   display: flex;
   height: 44px;
-  margin-bottom: 1em;
-  border-bottom: 1px solid #f3f4f6;
+  margin-bottom: 16px;
+  border-bottom: 1px solid #e5e7eb;
   padding-bottom: 12px;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .react-calendar__navigation button {
-  min-width: 44px;
+  min-width: 32px;
+  height: 32px;
   background: none;
-  font-size: 15px;
+  font-size: 14px;
   font-weight: 600;
-  color: #111827;
+  color: #374151;
   border: none;
   cursor: pointer;
-  padding: 4px;
+  padding: 0 6px;
   border-radius: 6px;
-  transition: all 0.2s ease;
+  transition: all 0.15s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .react-calendar__navigation button:hover {
-  background-color: #f9fafb;
+  background-color: #f3f4f6;
+  color: #111827;
 }
 
-.react-calendar__navigation button:enabled:hover,
-.react-calendar__navigation button:enabled:focus {
-  background-color: #f9fafb;
+.react-calendar__navigation button:enabled:active {
+  background-color: #e5e7eb;
+}
+
+.react-calendar__navigation__label {
+  font-size: 15px;
+  font-weight: 700;
+  color: #111827;
+  letter-spacing: -0.02em;
+  pointer-events: none;
+  flex: 1;
+  text-align: center;
 }
 
 .react-calendar__month-view__weekdays {
   text-align: center;
-  text-transform: uppercase;
+  text-transform: none;
   font-weight: 600;
   font-size: 11px;
   color: #6b7280;
-  letter-spacing: 0.05em;
-  padding: 8px 0;
+  letter-spacing: 0;
+  padding: 10px 0;
+  border-bottom: 1px solid #f3f4f6;
+  margin-bottom: 4px;
 }
 
 .react-calendar__month-view__weekdays__weekday {
-  padding: 8px 4px;
+  padding: 0 2px;
+  color: #6b7280;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.react-calendar__month-view__weekdays__weekday abbr {
+  text-decoration: none;
+  font-weight: 600;
+  display: block;
+  width: 100%;
 }
 
 .react-calendar__month-view__days {
   display: grid !important;
   grid-template-columns: repeat(7, 1fr);
+  gap: 2px;
+  margin-top: 4px;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .react-calendar__tile {
   max-width: 100%;
   text-align: center;
-  padding: 10px 4px;
+  padding: 10px 2px;
   background: none;
-  text-align: center;
-  line-height: 16px;
-  font-size: 13px;
+  line-height: 1.3;
+  font-size: 14px;
   color: #374151;
-  border-radius: 6px;
+  border-radius: 0;
+  border: none;
   transition: all 0.15s ease;
   cursor: pointer;
+  font-weight: 500;
+  aspect-ratio: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
 }
 
-.react-calendar__tile:enabled:hover,
-.react-calendar__tile:enabled:focus {
+.react-calendar__tile:enabled:hover {
   background-color: #f9fafb;
   color: #111827;
+}
+
+.react-calendar__tile:enabled:active {
+  background-color: #f3f4f6;
 }
 
 .react-calendar__tile--now {
   background: transparent;
   border: 1px solid #6366f1;
   color: #111827;
-  font-weight: 600;
+  font-weight: 700;
+  border-radius: 6px;
 }
 
-.react-calendar__tile--now:enabled:hover,
-.react-calendar__tile--now:enabled:focus {
-  background-color: #f9fafb;
+.react-calendar__tile--now:enabled:hover {
+  background-color: #f0f9ff;
   border-color: #4f46e5;
 }
 
 .react-calendar__tile--active {
   background: #6366f1 !important;
   color: white !important;
-  font-weight: 600;
+  font-weight: 700;
+  border-radius: 6px;
+  border: none !important;
 }
 
-.react-calendar__tile--active:enabled:hover,
-.react-calendar__tile--active:enabled:focus {
+.react-calendar__tile--active:enabled:hover {
   background: #4f46e5 !important;
 }
 
 .react-calendar__tile--neighboringMonth {
   color: #d1d5db;
+  opacity: 0.6;
 }
 
 .react-calendar__tile--neighboringMonth:enabled:hover {
   color: #9ca3af;
+  opacity: 0.8;
 }
 
-/* React Big Calendar Styles */
+/* ============================================
+   React Big Calendar (메인 캘린더) - 모던한 디자인
+   ============================================ */
 .rbc-calendar {
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+  font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Noto Sans KR', 'Inter', sans-serif;
   height: 100%;
   display: flex;
   flex-direction: column;
+  background: #ffffff;
+  border-radius: 12px;
+  width: 100%;
+  box-sizing: border-box;
+  overflow-x: visible;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-.rbc-header {
-  padding: 12px 8px;
-  font-weight: 500;
-  color: #111827;
-  border-bottom: 1px solid #e5e7eb;
-  background-color: #fafafa;
+.rbc-time-view {
+  display: flex !important;
+  flex-direction: column !important;
+  height: 100% !important;
+  max-height: 100% !important;
+  overflow: hidden !important;
+  position: relative !important;
 }
 
+.rbc-calendar .rbc-time-view {
+  height: 100% !important;
+  max-height: 100% !important;
+}
+
+/* 툴바 스타일 */
 .rbc-toolbar {
-  padding: 16px;
-  background-color: #fafafa;
+  padding: 20px 24px;
+  background: linear-gradient(to bottom, #ffffff 0%, #fafafa 100%);
   border-bottom: 1px solid #e5e7eb;
   display: flex;
   justify-content: space-between;
   align-items: center;
   flex-wrap: wrap;
-  gap: 8px;
+  gap: 12px;
+  margin-bottom: 0;
 }
 
 .rbc-toolbar button {
   background-color: transparent;
   color: #6b7280;
-  border: none;
-  border-radius: 6px;
-  padding: 6px 12px;
-  font-weight: 500;
+  border: 1px solid transparent;
+  border-radius: 8px;
+  padding: 8px 16px;
+  font-weight: 600;
+  font-size: 14px;
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  letter-spacing: -0.01em;
 }
 
 .rbc-toolbar button:hover {
   background-color: #f9fafb;
   color: #111827;
+  border-color: #e5e7eb;
+  transform: translateY(-1px);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.rbc-toolbar button:active {
+  transform: translateY(0);
 }
 
 .rbc-toolbar button.rbc-active {
-  background-color: #6366f1;
+  background: linear-gradient(135deg, #6366f1 0%, #4f46e5 100%);
   color: white;
+  border-color: transparent;
+  box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);
+}
+
+.rbc-toolbar button.rbc-active:hover {
+  background: linear-gradient(135deg, #4f46e5 0%, #4338ca 100%);
+  box-shadow: 0 6px 16px rgba(99, 102, 241, 0.4);
 }
 
 .rbc-toolbar-label {
-  font-weight: 600;
-  font-size: 16px;
+  font-weight: 700;
+  font-size: 18px;
   color: #111827;
+  letter-spacing: -0.02em;
 }
 
-.rbc-event {
-  border-radius: 6px;
-  border: none;
-  padding: 4px 8px;
+/* 헤더 스타일 */
+.rbc-header {
+  padding: 16px 12px;
+  font-weight: 600;
   font-size: 13px;
-  font-weight: 500;
+  color: #6b7280;
+  border-bottom: 1px solid #f3f4f6;
+  background: linear-gradient(to bottom, #fafafa 0%, #ffffff 100%);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.rbc-header + .rbc-header {
+  border-left: 1px solid #f3f4f6;
+}
+
+/* 이벤트 스타일 */
+.rbc-event {
+  border-radius: 8px;
+  border: none;
+  padding: 6px 10px;
+  font-size: 13px;
+  font-weight: 600;
   color: white;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: pointer;
+}
+
+.rbc-event:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  z-index: 10;
 }
 
 .rbc-event-content {
   font-size: 13px;
+  font-weight: 600;
+  line-height: 1.4;
 }
 
 .rbc-event-label {
   font-size: 11px;
-  opacity: 0.9;
+  opacity: 0.95;
+  font-weight: 500;
+  margin-top: 2px;
 }
 
-.rbc-day-slot .rbc-time-slot {
-  border-top: 1px solid #f3f4f6;
-}
-
-.rbc-time-header-content {
-  border-left: 1px solid #e5e7eb;
-}
-
-.rbc-time-content {
-  border-top: 1px solid #e5e7eb;
-}
-
-.rbc-time-view {
-  border: 1px solid #e5e7eb;
-}
-
-.rbc-month-view {
-  border: 1px solid #e5e7eb;
-}
-
-.rbc-month-row {
-  border-bottom: 1px solid #e5e7eb;
-}
-
+/* 날짜 셀 스타일 */
 .rbc-date-cell {
   text-align: right;
-  padding: 8px;
+  padding: 12px;
   color: #111827;
-  font-weight: 500;
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.rbc-date-cell a {
+  color: #111827;
+  text-decoration: none;
+  padding: 4px 8px;
+  border-radius: 8px;
+  transition: all 0.2s ease;
+}
+
+.rbc-date-cell a:hover {
+  background-color: #f3f4f6;
 }
 
 .rbc-off-range-bg {
@@ -215,29 +326,235 @@
 }
 
 .rbc-today {
-  background-color: #f0f9ff;
+  background: linear-gradient(to bottom, #f0f9ff 0%, #e0f2fe 100%);
+}
+
+.rbc-today .rbc-date-cell a {
+  color: #6366f1;
+  font-weight: 700;
 }
 
 .rbc-selected-cell {
   background-color: #f0f0ff;
 }
 
-.rbc-show-more {
-  background-color: #f9fafb;
-  color: #6366f1;
+/* 월 뷰 스타일 */
+.rbc-month-view {
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  overflow: visible;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+.rbc-month-view table {
+  width: 100%;
+  table-layout: fixed;
+  border-collapse: collapse;
+}
+
+.rbc-month-view .rbc-month-row {
+  width: 100%;
+}
+
+.rbc-month-view .rbc-day-bg {
+  width: auto;
+}
+
+.rbc-month-row {
+  border-bottom: 1px solid #f3f4f6;
+}
+
+.rbc-month-row:last-child {
+  border-bottom: none;
+}
+
+.rbc-day-bg {
+  border-right: 1px solid #f3f4f6;
+  transition: background-color 0.2s ease;
+}
+
+.rbc-day-bg:hover {
+  background-color: #fafafa;
+}
+
+.rbc-day-bg:last-child {
+  border-right: none;
+}
+
+/* 시간 뷰 스타일 */
+.rbc-time-view {
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  width: 100%;
+  box-sizing: border-box;
+  height: 100% !important;
+  max-height: 100%;
+  display: flex !important;
+  flex-direction: column !important;
+  overflow: hidden !important;
+}
+
+.rbc-time-header {
+  flex-shrink: 0 !important;
+  overflow: hidden !important;
+  position: relative !important;
+}
+
+.rbc-time-header-content {
+  border-left: 1px solid #e5e7eb;
+  overflow: hidden !important;
+  flex-shrink: 0;
+  position: relative !important;
+}
+
+/* 헤더와 컨텐츠의 너비 동기화 - 강화 */
+.rbc-time-header-content,
+.rbc-time-content {
+  width: 100% !important;
+}
+
+.rbc-time-header-content table,
+.rbc-time-content table {
+  table-layout: fixed !important;
+  width: 100% !important;
+  border-collapse: collapse !important;
+}
+
+.rbc-time-header-content table colgroup,
+.rbc-time-content table colgroup {
+  display: table-column-group !important;
+}
+
+.rbc-time-header-content table colgroup col,
+.rbc-time-content table colgroup col {
+  width: auto !important;
+}
+
+/* 각 열의 너비를 정확히 맞추기 */
+.rbc-time-header-content table thead th,
+.rbc-time-content table tbody td {
+  width: auto !important;
+  min-width: 0 !important;
+  max-width: none !important;
+}
+
+/* 스크롤바 공간을 헤더에도 적용 */
+.rbc-time-header-content {
+  padding-right: 8px !important; /* 스크롤바 너비만큼 */
+  margin-right: 0 !important;
+}
+
+.rbc-time-content {
+  padding-right: 0 !important;
+  margin-right: 0 !important;
+}
+
+.rbc-time-content {
+  border-top: 1px solid #e5e7eb;
+  overflow-y: auto !important;
+  overflow-x: hidden !important;
+  flex: 1 1 auto !important;
+  min-height: 0 !important;
+  max-height: 100% !important;
+  position: relative !important;
+  height: 0 !important; /* flex에서 스크롤을 위해 필요 */
+  padding-right: 0 !important;
+  margin-right: 0 !important;
+  box-sizing: border-box !important;
+  scrollbar-gutter: stable;
+}
+
+.rbc-time-header-content {
+  padding-right: 0 !important;
+  margin-right: 0 !important;
+  box-sizing: border-box !important;
+  overflow-x: hidden !important;
+  scrollbar-gutter: stable;
+}
+
+/* 스크롤바가 헤더 너비에 영향을 주지 않도록 - 이미 위에서 설정됨 */
+
+.rbc-time-content > table {
+  height: auto !important;
+}
+
+.rbc-day-slot {
+  min-height: 40px !important;
+}
+
+.rbc-time-slot {
+  min-height: 40px !important;
+  height: 40px !important;
+}
+
+/* 스크롤바 스타일링 */
+.rbc-time-content::-webkit-scrollbar {
+  width: 8px;
+}
+
+.rbc-time-content::-webkit-scrollbar-track {
+  background: #f9fafb;
   border-radius: 4px;
-  padding: 4px 8px;
+}
+
+.rbc-time-content::-webkit-scrollbar-thumb {
+  background: #d1d5db;
+  border-radius: 4px;
+}
+
+.rbc-time-content::-webkit-scrollbar-thumb:hover {
+  background: #9ca3af;
+}
+
+.rbc-day-slot .rbc-time-slot {
+  border-top: 1px solid #f3f4f6;
+  min-height: 40px !important;
+  height: 40px !important;
+}
+
+.rbc-time-slot {
+  border-top: 1px solid #f3f4f6;
+  min-height: 40px !important;
+  height: 40px !important;
+}
+
+/* 시간 라벨 크기 조정 */
+.rbc-time-gutter .rbc-label {
+  padding: 2px 8px !important;
+  font-size: 11px !important;
+  line-height: 1.2 !important;
+}
+
+/* Show More 버튼 */
+.rbc-show-more {
+  background: linear-gradient(135deg, #f9fafb 0%, #f3f4f6 100%);
+  color: #6366f1;
+  border-radius: 8px;
+  padding: 6px 12px;
   font-size: 12px;
-  font-weight: 500;
+  font-weight: 600;
+  border: 1px solid #e5e7eb;
+  transition: all 0.2s ease;
 }
 
 .rbc-show-more:hover {
-  background-color: #f3f4f6;
+  background: linear-gradient(135deg, #f3f4f6 0%, #e5e7eb 100%);
+  color: #4f46e5;
+  border-color: #6366f1;
+  transform: translateY(-1px);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
 }
 
 /* Agenda View */
 .rbc-agenda-view {
   border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  overflow-x: visible;
+  overflow-y: auto;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .rbc-agenda-table {
@@ -247,27 +564,39 @@
 
 .rbc-agenda-date-cell,
 .rbc-agenda-time-cell {
-  padding: 12px;
+  padding: 16px;
   border-bottom: 1px solid #f3f4f6;
   color: #111827;
+  font-weight: 600;
+  font-size: 14px;
+  background: #fafafa;
 }
 
 .rbc-agenda-event-cell {
-  padding: 12px;
+  padding: 16px;
   border-bottom: 1px solid #f3f4f6;
+  transition: background-color 0.2s ease;
 }
 
 .rbc-agenda-event-cell:hover {
   background-color: #f9fafb;
 }
 
-/* Scrollbar Styling */
+.rbc-agenda-event-cell .rbc-agenda-event {
+  color: #111827;
+  font-weight: 500;
+  font-size: 14px;
+}
+
+/* 스크롤바 스타일 */
 ::-webkit-scrollbar {
-  width: 6px;
+  width: 8px;
+  height: 8px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #fafafa;
+  background: #f9fafb;
+  border-radius: 4px;
 }
 
 .dark ::-webkit-scrollbar-track {
@@ -276,9 +605,101 @@
 
 ::-webkit-scrollbar-thumb {
   background: #d1d5db;
-  border-radius: 3px;
+  border-radius: 4px;
+  transition: background 0.2s ease;
 }
 
 ::-webkit-scrollbar-thumb:hover {
   background: #9ca3af;
+}
+
+/* ============================================
+   추가 모던한 스타일링
+   ============================================ */
+
+/* 전체 레이아웃 개선 */
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Inter', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* React Big Calendar 추가 스타일 */
+.rbc-toolbar button.rbc-btn-group {
+  display: flex;
+  gap: 4px;
+}
+
+.rbc-toolbar button.rbc-btn-group button {
+  margin: 0;
+}
+
+/* 이벤트 호버 효과 개선 */
+.rbc-event.rbc-selected {
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.25);
+  transform: translateY(-2px);
+}
+
+/* 월 뷰 날짜 셀 호버 효과 */
+.rbc-day-bg.rbc-off-range-bg:hover {
+  background-color: #f9fafb;
+}
+
+.rbc-day-bg.rbc-today:hover {
+  background: linear-gradient(to bottom, #e0f2fe 0%, #bae6fd 100%);
+}
+
+/* 시간 뷰 개선 */
+.rbc-time-header-gutter {
+  background: #fafafa;
+  border-right: 1px solid #e5e7eb;
+  width: 60px !important;
+  min-width: 60px !important;
+  max-width: 60px !important;
+  flex-shrink: 0 !important;
+}
+
+.rbc-time-gutter {
+  width: 60px !important;
+  min-width: 60px !important;
+  max-width: 60px !important;
+  flex-shrink: 0 !important;
+}
+
+.rbc-time-gutter .rbc-timeslot-group {
+  border-bottom: 1px solid #f3f4f6;
+  min-height: 40px !important;
+}
+
+.rbc-time-gutter .rbc-timeslot-group .rbc-label {
+  padding: 4px 8px !important;
+  font-size: 12px !important;
+}
+
+/* 헤더와 컨텐츠의 열 너비 동기화 */
+.rbc-time-header-content table,
+.rbc-time-content table {
+  table-layout: fixed !important;
+  width: 100% !important;
+}
+
+/* 종일 이벤트 영역 */
+.rbc-allday-cell {
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.rbc-allday-cell + .rbc-allday-cell {
+  border-left: 1px solid #e5e7eb;
+}
+
+/* Agenda 뷰 개선 */
+.rbc-agenda-event-cell .rbc-agenda-event {
+  font-weight: 600;
+  color: #111827;
+}
+
+.rbc-agenda-event-cell .rbc-agenda-event-time {
+  color: #6366f1;
+  font-weight: 600;
+  margin-right: 12px;
 }
