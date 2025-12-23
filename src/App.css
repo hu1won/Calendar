@@ -1,269 +1,267 @@
-/* Syncfusion Schedule Component Styles */
-@import "../node_modules/@syncfusion/ej2-base/styles/material.css";
-@import "../node_modules/@syncfusion/ej2-buttons/styles/material.css";
-@import "../node_modules/@syncfusion/ej2-calendars/styles/material.css";
-@import "../node_modules/@syncfusion/ej2-dropdowns/styles/material.css";
-@import "../node_modules/@syncfusion/ej2-inputs/styles/material.css";
-@import "../node_modules/@syncfusion/ej2-lists/styles/material.css";
-@import "../node_modules/@syncfusion/ej2-navigations/styles/material.css";
-@import "../node_modules/@syncfusion/ej2-popups/styles/material.css";
-@import "../node_modules/@syncfusion/ej2-splitbuttons/styles/material.css";
-@import "../node_modules/@syncfusion/ej2-react-schedule/styles/material.css";
-
-/* Custom Calendar Styles - 심플하고 모던한 디자인 */
-.calendar-wrapper .e-calendar {
-  border: none !important;
-  box-shadow: none !important;
+/* React Big Calendar Styles */
+.react-calendar {
+  width: 100%;
+  border: none;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
-  background: transparent !important;
-  padding: 0 !important;
+  background: transparent;
 }
 
-.calendar-wrapper {
-  overflow: hidden !important;
+.react-calendar__navigation {
+  display: flex;
+  height: 44px;
+  margin-bottom: 1em;
+  border-bottom: 1px solid #f3f4f6;
+  padding-bottom: 12px;
 }
 
-/* 캘린더 헤더 (월/년 표시) */
-.calendar-wrapper .e-calendar .e-header {
-  padding: 12px 0 !important;
-  border-bottom: 1px solid #f3f4f6 !important;
-  margin-bottom: 8px !important;
+.react-calendar__navigation button {
+  min-width: 44px;
+  background: none;
+  font-size: 15px;
+  font-weight: 600;
+  color: #111827;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+  border-radius: 6px;
+  transition: all 0.2s ease;
 }
 
-.calendar-wrapper .e-calendar .e-header .e-title {
-  font-weight: 600 !important;
-  color: #111827 !important;
-  font-size: 15px !important;
-  letter-spacing: -0.02em !important;
+.react-calendar__navigation button:hover {
+  background-color: #f9fafb;
 }
 
-.dark .calendar-wrapper .e-calendar .e-header .e-title {
-  color: #f3f4f6;
+.react-calendar__navigation button:enabled:hover,
+.react-calendar__navigation button:enabled:focus {
+  background-color: #f9fafb;
 }
 
-/* 네비게이션 화살표 버튼 */
-.calendar-wrapper .e-calendar .e-header .e-icon-container {
-  border-radius: 6px !important;
-  transition: all 0.2s ease !important;
+.react-calendar__month-view__weekdays {
+  text-align: center;
+  text-transform: uppercase;
+  font-weight: 600;
+  font-size: 11px;
+  color: #6b7280;
+  letter-spacing: 0.05em;
+  padding: 8px 0;
 }
 
-.calendar-wrapper .e-calendar .e-header .e-icon-container .e-prev,
-.calendar-wrapper .e-calendar .e-header .e-icon-container .e-next {
-  color: #6b7280 !important;
-  font-size: 14px !important;
-  padding: 4px !important;
+.react-calendar__month-view__weekdays__weekday {
+  padding: 8px 4px;
 }
 
-.calendar-wrapper .e-calendar .e-header .e-icon-container:hover {
-  background-color: #f9fafb !important;
+.react-calendar__month-view__days {
+  display: grid !important;
+  grid-template-columns: repeat(7, 1fr);
 }
 
-.calendar-wrapper .e-calendar .e-header .e-icon-container .e-prev:hover,
-.calendar-wrapper .e-calendar .e-header .e-icon-container .e-next:hover {
-  color: #111827 !important;
+.react-calendar__tile {
+  max-width: 100%;
+  text-align: center;
+  padding: 10px 4px;
+  background: none;
+  text-align: center;
+  line-height: 16px;
+  font-size: 13px;
+  color: #374151;
+  border-radius: 6px;
+  transition: all 0.15s ease;
+  cursor: pointer;
 }
 
-/* 요일 헤더 */
-.calendar-wrapper .e-calendar .e-week-header {
-  padding: 8px 0 !important;
+.react-calendar__tile:enabled:hover,
+.react-calendar__tile:enabled:focus {
+  background-color: #f9fafb;
+  color: #111827;
 }
 
-.calendar-wrapper .e-calendar .e-week-header th {
-  color: #6b7280 !important;
-  font-size: 11px !important;
-  font-weight: 600 !important;
-  text-transform: uppercase !important;
-  letter-spacing: 0.05em !important;
-  padding: 8px 4px !important;
+.react-calendar__tile--now {
+  background: transparent;
+  border: 1px solid #6366f1;
+  color: #111827;
+  font-weight: 600;
 }
 
-/* 날짜 셀 - 기본 스타일 유지, 색상만 변경 */
-.calendar-wrapper .e-calendar .e-content .e-cell {
-  color: #374151 !important;
-  cursor: pointer !important;
+.react-calendar__tile--now:enabled:hover,
+.react-calendar__tile--now:enabled:focus {
+  background-color: #f9fafb;
+  border-color: #4f46e5;
 }
 
-/* 호버 효과는 기본 스타일 유지 */
-
-/* 오늘 날짜 - 선택되지 않은 경우 테두리만 표시 */
-.calendar-wrapper .e-calendar .e-content .e-today:not(.e-selected) {
-  background-color: transparent !important;
-  background: transparent !important;
-  color: #111827 !important;
-  font-weight: 600 !important;
-  border-radius: 6px !important;
-  border: 1px solid #6366f1 !important;
-  border-color: #6366f1 !important;
-  box-shadow: none !important;
-  box-sizing: border-box !important;
-  padding: inherit !important;
-  margin: 0 !important;
-  height: auto !important;
-  min-height: auto !important;
-  line-height: inherit !important;
-}
-
-.calendar-wrapper .e-calendar .e-content .e-today:not(.e-selected):hover {
-  background-color: #f9fafb !important;
-  border-color: #4f46e5 !important;
-}
-
-/* 오늘 날짜이면서 선택된 경우 - 인디고 배경 */
-.calendar-wrapper .e-calendar .e-content .e-today.e-selected {
-  background-color: #6366f1 !important;
+.react-calendar__tile--active {
   background: #6366f1 !important;
   color: white !important;
-  font-weight: 600 !important;
-  border-radius: 6px !important;
-  border: none !important;
-  border-color: transparent !important;
-  box-shadow: none !important;
+  font-weight: 600;
 }
 
-.calendar-wrapper .e-calendar .e-content .e-today.e-selected:hover {
-  background-color: #4f46e5 !important;
+.react-calendar__tile--active:enabled:hover,
+.react-calendar__tile--active:enabled:focus {
   background: #4f46e5 !important;
-  border: none !important;
-  border-color: transparent !important;
 }
 
-/* 선택된 날짜 - 모든 빨간색 제거 */
-.calendar-wrapper .e-calendar .e-content .e-selected,
-.calendar-wrapper .e-calendar .e-content .e-selected.e-today,
-.calendar-wrapper .e-calendar .e-content .e-selected[style*="background"],
-.calendar-wrapper .e-calendar .e-content .e-selected[style*="border"],
-.calendar-wrapper .e-calendar .e-content td.e-selected,
-.calendar-wrapper .e-calendar .e-content td.e-selected.e-today {
-  background-color: #6366f1 !important;
-  background: #6366f1 !important;
-  color: white !important;
-  border-radius: 6px !important;
-  font-weight: 600 !important;
-  border: none !important;
-  border-color: transparent !important;
-  box-shadow: none !important;
+.react-calendar__tile--neighboringMonth {
+  color: #d1d5db;
 }
 
-.calendar-wrapper .e-calendar .e-content .e-selected:hover,
-.calendar-wrapper .e-calendar .e-content .e-selected.e-today:hover,
-.calendar-wrapper .e-calendar .e-content td.e-selected:hover {
-  background-color: #4f46e5 !important;
-  background: #4f46e5 !important;
-  border: none !important;
-  border-color: transparent !important;
+.react-calendar__tile--neighboringMonth:enabled:hover {
+  color: #9ca3af;
 }
 
-/* Syncfusion 기본 선택 색상 완전 제거 */
-.calendar-wrapper .e-calendar .e-content .e-cell.e-selected,
-.calendar-wrapper .e-calendar .e-content .e-cell.e-today.e-selected,
-.calendar-wrapper .e-calendar .e-content td.e-cell.e-selected,
-.calendar-wrapper .e-calendar .e-content td.e-cell.e-today.e-selected {
-  background-color: #6366f1 !important;
-  background: #6366f1 !important;
-  border: none !important;
-  border-color: transparent !important;
-  outline: none !important;
-  box-shadow: none !important;
+/* React Big Calendar Styles */
+.rbc-calendar {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
 }
 
-/* 모든 빨간색 배경 완전 제거 - 더 구체적인 선택자 */
-.calendar-wrapper .e-calendar .e-content .e-selected[style],
-.calendar-wrapper .e-calendar .e-content .e-today[style],
-.calendar-wrapper .e-calendar .e-content .e-selected.e-today[style],
-.calendar-wrapper .e-calendar .e-content td[class*="e-selected"][style],
-.calendar-wrapper .e-calendar .e-content td[class*="e-today"][style] {
-  background-color: #6366f1 !important;
-  background: #6366f1 !important;
-  border: none !important;
-  border-color: transparent !important;
-  outline: none !important;
-  box-shadow: none !important;
+.rbc-header {
+  padding: 12px 8px;
+  font-weight: 500;
+  color: #111827;
+  border-bottom: 1px solid #e5e7eb;
+  background-color: #fafafa;
 }
 
-/* Pseudo-element (::before, ::after) 빨간색 제거 */
-.calendar-wrapper .e-calendar .e-content .e-selected::before,
-.calendar-wrapper .e-calendar .e-content .e-selected::after,
-.calendar-wrapper .e-calendar .e-content .e-today::before,
-.calendar-wrapper .e-calendar .e-content .e-today::after,
-.calendar-wrapper .e-calendar .e-content .e-selected.e-today::before,
-.calendar-wrapper .e-calendar .e-content .e-selected.e-today::after,
-.calendar-wrapper .e-calendar .e-content td.e-selected::before,
-.calendar-wrapper .e-calendar .e-content td.e-selected::after,
-.calendar-wrapper .e-calendar .e-content td.e-today::before,
-.calendar-wrapper .e-calendar .e-content td.e-today::after {
-  display: none !important;
-  background: none !important;
-  background-color: transparent !important;
-  border: none !important;
+.rbc-toolbar {
+  padding: 16px;
+  background-color: #fafafa;
+  border-bottom: 1px solid #e5e7eb;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
 }
 
-/* 모든 가능한 선택자로 빨간색 완전 제거 - 선택된 날짜만 */
-.calendar-wrapper .e-calendar .e-content td[class*="selected"],
-.calendar-wrapper .e-calendar .e-content .e-date-cell.e-selected,
-.calendar-wrapper .e-calendar .e-content .e-date-cell.e-selected.e-today,
-.calendar-wrapper .e-calendar .e-content table td.e-selected,
-.calendar-wrapper .e-calendar .e-content table td.e-selected.e-today {
-  background-color: #6366f1 !important;
-  background: #6366f1 !important;
-  border: none !important;
-  border-color: transparent !important;
-  outline: none !important;
-  box-shadow: none !important;
-  color: white !important;
+.rbc-toolbar button {
+  background-color: transparent;
+  color: #6b7280;
+  border: none;
+  border-radius: 6px;
+  padding: 6px 12px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
 }
 
-/* 오늘 날짜 (선택되지 않은 경우) - 테두리만 */
-.calendar-wrapper .e-calendar .e-content td[class*="today"]:not([class*="selected"]),
-.calendar-wrapper .e-calendar .e-content .e-date-cell.e-today:not(.e-selected),
-.calendar-wrapper .e-calendar .e-content table td.e-today:not(.e-selected) {
-  background-color: transparent !important;
-  background: transparent !important;
-  border: 1px solid #6366f1 !important;
-  border-color: #6366f1 !important;
-  color: #111827 !important;
-  font-weight: 600 !important;
-  box-sizing: border-box !important;
-  padding: inherit !important;
-  margin: 0 !important;
-  height: auto !important;
-  min-height: auto !important;
-  line-height: inherit !important;
+.rbc-toolbar button:hover {
+  background-color: #f9fafb;
+  color: #111827;
 }
 
-/* 내부 요소들도 빨간색 제거 */
-.calendar-wrapper .e-calendar .e-content .e-selected *,
-.calendar-wrapper .e-calendar .e-content .e-today *,
-.calendar-wrapper .e-calendar .e-content .e-selected.e-today * {
-  background-color: transparent !important;
-  background: transparent !important;
-  border: none !important;
-  color: inherit !important;
+.rbc-toolbar button.rbc-active {
+  background-color: #6366f1;
+  color: white;
 }
 
-/* 캘린더 컨텐츠 영역 스크롤 제거 */
-.calendar-wrapper .e-calendar .e-content {
-  padding: 4px 0 !important;
-  overflow: hidden !important;
-  max-height: 300px !important;
+.rbc-toolbar-label {
+  font-weight: 600;
+  font-size: 16px;
+  color: #111827;
 }
 
-.calendar-wrapper .e-calendar .e-content table {
-  height: auto !important;
-  max-height: 300px !important;
+.rbc-event {
+  border-radius: 6px;
+  border: none;
+  padding: 4px 8px;
+  font-size: 13px;
+  font-weight: 500;
+  color: white;
 }
 
-/* 다른 달 날짜 (비활성화) */
-.calendar-wrapper .e-calendar .e-content .e-other-month {
-  color: #d1d5db !important;
+.rbc-event-content {
+  font-size: 13px;
 }
 
-.calendar-wrapper .e-calendar .e-content .e-other-month:hover {
-  background-color: #fafafa !important;
-  color: #9ca3af !important;
+.rbc-event-label {
+  font-size: 11px;
+  opacity: 0.9;
 }
 
+.rbc-day-slot .rbc-time-slot {
+  border-top: 1px solid #f3f4f6;
+}
 
-/* Sidebar Scrollbar Styling */
+.rbc-time-header-content {
+  border-left: 1px solid #e5e7eb;
+}
+
+.rbc-time-content {
+  border-top: 1px solid #e5e7eb;
+}
+
+.rbc-time-view {
+  border: 1px solid #e5e7eb;
+}
+
+.rbc-month-view {
+  border: 1px solid #e5e7eb;
+}
+
+.rbc-month-row {
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.rbc-date-cell {
+  text-align: right;
+  padding: 8px;
+  color: #111827;
+  font-weight: 500;
+}
+
+.rbc-off-range-bg {
+  background: #fafafa;
+}
+
+.rbc-today {
+  background-color: #f0f9ff;
+}
+
+.rbc-selected-cell {
+  background-color: #f0f0ff;
+}
+
+.rbc-show-more {
+  background-color: #f9fafb;
+  color: #6366f1;
+  border-radius: 4px;
+  padding: 4px 8px;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.rbc-show-more:hover {
+  background-color: #f3f4f6;
+}
+
+/* Agenda View */
+.rbc-agenda-view {
+  border: 1px solid #e5e7eb;
+}
+
+.rbc-agenda-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.rbc-agenda-date-cell,
+.rbc-agenda-time-cell {
+  padding: 12px;
+  border-bottom: 1px solid #f3f4f6;
+  color: #111827;
+}
+
+.rbc-agenda-event-cell {
+  padding: 12px;
+  border-bottom: 1px solid #f3f4f6;
+}
+
+.rbc-agenda-event-cell:hover {
+  background-color: #f9fafb;
+}
+
+/* Scrollbar Styling */
 ::-webkit-scrollbar {
   width: 6px;
 }
@@ -284,67 +282,3 @@
 ::-webkit-scrollbar-thumb:hover {
   background: #9ca3af;
 }
-
-/* Syncfusion Schedule Component Full Width */
-.e-schedule {
-  width: 100% !important;
-  max-width: 100% !important;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
-}
-
-.e-schedule .e-content-wrap {
-  width: 100% !important;
-}
-
-.e-schedule .e-content-table {
-  width: 100% !important;
-}
-
-/* Syncfusion Schedule Component - 기본 스타일 유지, 최소한의 오버라이드만 */
-
-
-/* 스크롤바 스타일 (캘린더 내부) */
-.e-schedule .e-content-wrap::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
-}
-
-.e-schedule .e-content-wrap::-webkit-scrollbar-track {
-  background: #fafafa;
-}
-
-.e-schedule .e-content-wrap::-webkit-scrollbar-thumb {
-  background: #d1d5db;
-  border-radius: 4px;
-}
-
-.e-schedule .e-content-wrap::-webkit-scrollbar-thumb:hover {
-  background: #9ca3af;
-}
-
-/* Hide Syncfusion Trial License Banner */
-.e-control.e-schedule .e-header-content .e-toolbar-item.e-toolbar-template,
-.e-control.e-schedule .e-header-content .e-toolbar-item.e-toolbar-template .e-trial-wrapper,
-.e-control.e-schedule .e-header-content .e-toolbar-item.e-toolbar-template .e-trial-wrapper .e-trial-text,
-div[id*="syncfusion-trial"],
-div[class*="e-trial"],
-.e-trial-wrapper {
-  display: none !important;
-  visibility: hidden !important;
-  height: 0 !important;
-  overflow: hidden !important;
-}
-
-/* Hide Syncfusion Trial Banner - General approach */
-body > div:first-child[style*="position: fixed"],
-body > div:first-child[style*="z-index"][style*="9999"],
-.e-trial-banner,
-.e-trial-wrapper {
-  display: none !important;
-  visibility: hidden !important;
-  height: 0 !important;
-  overflow: hidden !important;
-  opacity: 0 !important;
-}
-
-

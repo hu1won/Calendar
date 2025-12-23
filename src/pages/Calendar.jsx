@@ -1,24 +1,34 @@
-import React, { useState, useEffect } from "react";
-import {
-  ScheduleComponent,
-  Day,
-  Week,
-  WorkWeek,
-  Month,
-  Agenda,
-  Inject,
-  Resize,
-  DragAndDrop,
-} from "@syncfusion/ej2-react-schedule";
+import React, { useState, useEffect, useMemo } from "react";
+import { Calendar, momentLocalizer, Views } from 'react-big-calendar';
+import withDragAndDrop from 'react-big-calendar/lib/addons/dragAndDrop';
+import moment from 'moment';
+import 'moment/locale/ko';
+import 'react-big-calendar/lib/css/react-big-calendar.css';
 
 import { scheduleData } from "../data/scheduleData";
+import { convertToBigCalendarEvents } from "../utils/calendarUtils";
 import { Header, Sidebar } from "../components";
 
+// moment 한국어 로케일 설정
+moment.locale('ko');
+const localizer = momentLocalizer(moment);
+
+// 드래그앤드롭 기능 추가
+const DnDCalendar = withDragAndDrop(Calendar);
+
 // Calendar
-const Calendar = () => {
+const CalendarPage = () => {
   const [selectedDate, setSelectedDate] = useState(new Date(2025, 11, 16));
+  const [currentView, setCurrentView] = useState(Views.MONTH);
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
   const [isMobile, setIsMobile] = useState(false);
+  const [events, setEvents] = useState([]);
+
+  // 데이터 변환
+  useEffect(() => {
+    const convertedEvents = convertToBigCalendarEvents(scheduleData);
+    setEvents(convertedEvents);
+  }, []);
 
   useEffect(() => {
     const checkMobile = () => {
@@ -29,92 +39,68 @@ const Calendar = () => {
     return () => window.removeEventListener('resize', checkMobile);
   }, []);
 
-  // Syncfusion 버튼 텍스트를 한국어로 변경
-  useEffect(() => {
-    const translateButtons = () => {
-      const translations = {
-        'TODAY': '오늘',
-        'DAY': '일',
-        'WEEK': '주',
-        'WORK WEEK': '주간',
-        'MONTH': '월',
-        'AGENDA': '목록'
-      };
-
-      // 모든 버튼 요소 찾기
-      const toolbarItems = document.querySelectorAll('.e-schedule .e-toolbar-item');
-      
-      toolbarItems.forEach(item => {
-        // 버튼 내부의 모든 텍스트 노드 찾기
-        const walker = document.createTreeWalker(
-          item,
-          NodeFilter.SHOW_TEXT,
-          null
-        );
-
-        let node;
-        while (node = walker.nextNode()) {
-          const text = node.textContent.trim();
-          const upperText = text.toUpperCase();
-          if (translations[upperText] && text.length < 20) {
-            node.textContent = translations[upperText];
-          }
-        }
-
-        // 버튼 요소 자체의 textContent도 변경
-        const buttons = item.querySelectorAll('.e-btn, button, .e-btn-text');
-        buttons.forEach(btn => {
-          const text = btn.textContent.trim();
-          const upperText = text.toUpperCase();
-          if (translations[upperText] && text.length < 20) {
-            // 이미 번역되지 않은 경우만 변경
-            if (!btn.hasAttribute('data-translated')) {
-              btn.textContent = translations[upperText];
-              btn.setAttribute('data-translated', 'true');
-            }
-          }
-        });
-      });
-    };
-
-    // 여러 시점에서 실행
-    const timers = [
-      setTimeout(translateButtons, 100),
-      setTimeout(translateButtons, 300),
-      setTimeout(translateButtons, 600),
-      setTimeout(translateButtons, 1000)
-    ];
-
-    // MutationObserver로 동적으로 추가되는 버튼도 감지
-    const observer = new MutationObserver(() => {
-      setTimeout(translateButtons, 50);
-    });
-
-    const scheduleElement = document.querySelector('.e-schedule');
-    if (scheduleElement) {
-      observer.observe(scheduleElement, {
-        childList: true,
-        subtree: true,
-        characterData: true
-      });
-    }
-
-    // 주기적으로 확인
-    const interval = setInterval(translateButtons, 300);
-
-    return () => {
-      timers.forEach(timer => clearTimeout(timer));
-      observer.disconnect();
-      clearInterval(interval);
-    };
-  }, [selectedDate]);
-
   const handleDateChange = (args) => {
-    setSelectedDate(args.value);
+    // react-calendar는 직접 Date 객체를 전달하거나 { value: Date } 형식으로 전달
+    const date = args?.value || args;
+    setSelectedDate(date);
   };
 
   const toggleSidebar = () => {
     setIsSidebarOpen(!isSidebarOpen);
+  };
+
+  // 이벤트 이동 (드래그앤드롭)
+  const moveEvent = ({ event, start, end }) => {
+    setEvents((prevEvents) => {
+      const existing = prevEvents.find((e) => e.id === event.id) ?? {};
+      const filtered = prevEvents.filter((e) => e.id !== event.id);
+      return [...filtered, { ...existing, start, end }];
+    });
+  };
+
+  // 이벤트 리사이즈
+  const resizeEvent = ({ event, start, end }) => {
+    setEvents((prevEvents) => {
+      const existing = prevEvents.find((e) => e.id === event.id) ?? {};
+      const filtered = prevEvents.filter((e) => e.id !== event.id);
+      return [...filtered, { ...existing, start, end }];
+    });
+  };
+
+  // 이벤트 스타일 커스터마이징
+  const eventStyleGetter = (event) => {
+    const color = event.resource?.color || '#6366f1';
+    return {
+      style: {
+        backgroundColor: color,
+        borderRadius: '6px',
+        opacity: 0.9,
+        color: 'white',
+        border: 'none',
+        padding: '4px 8px',
+        fontSize: '13px',
+      },
+    };
+  };
+
+  // 날짜 포맷 커스터마이징
+  const formats = {
+    dayFormat: 'D일',
+    weekdayFormat: 'ddd',
+    monthHeaderFormat: 'YYYY년 M월',
+    dayHeaderFormat: 'M월 D일 dddd',
+    dayRangeHeaderFormat: ({ start, end }) =>
+      `${moment(start).format('M월 D일')} - ${moment(end).format('M월 D일')}`,
+  };
+
+  // 뷰 전환 핸들러
+  const handleViewChange = (view) => {
+    setCurrentView(view);
+  };
+
+  // 날짜 네비게이션 핸들러
+  const handleNavigate = (date) => {
+    setSelectedDate(date);
   };
 
   return (
@@ -166,18 +152,37 @@ const Calendar = () => {
               <Header category="App" title="Calendar" />
             </div>
             <div style={{ flex: 1, overflow: 'hidden', minHeight: 0, position: 'relative', width: '100%', paddingLeft: 0, paddingRight: 0 }}>
-              <ScheduleComponent
-                height={isMobile ? 'calc(100vh - 180px)' : 'calc(100vh - 120px)'}
-                width="100%"
-                eventSettings={{ dataSource: scheduleData }}
-                selectedDate={selectedDate}
-                cssClass="custom-schedule"
-              >
-                {/* Inject required services */}
-                <Inject
-                  services={[Day, Week, WorkWeek, Month, Agenda, Resize, DragAndDrop]}
-                />
-              </ScheduleComponent>
+              <DnDCalendar
+                localizer={localizer}
+                events={events}
+                startAccessor="start"
+                endAccessor="end"
+                style={{ height: isMobile ? 'calc(100vh - 180px)' : 'calc(100vh - 120px)' }}
+                view={currentView}
+                views={[Views.MONTH, Views.WEEK, Views.DAY, Views.AGENDA]}
+                date={selectedDate}
+                onNavigate={handleNavigate}
+                onView={handleViewChange}
+                onEventDrop={moveEvent}
+                onEventResize={resizeEvent}
+                eventPropGetter={eventStyleGetter}
+                formats={formats}
+                messages={{
+                  next: '다음',
+                  previous: '이전',
+                  today: '오늘',
+                  month: '월',
+                  week: '주',
+                  day: '일',
+                  agenda: '목록',
+                  date: '날짜',
+                  time: '시간',
+                  event: '이벤트',
+                  noEventsInRange: '이 기간에 일정이 없습니다.',
+                }}
+                popup
+                popupOffset={{ x: 30, y: -300 }}
+              />
             </div>
           </div>
         </div>
@@ -186,4 +191,4 @@ const Calendar = () => {
   );
 };
 
-export default Calendar;
+export default CalendarPage;
