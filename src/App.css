@@ -1,0 +1,350 @@
+/* Syncfusion Schedule Component Styles */
+@import "../node_modules/@syncfusion/ej2-base/styles/material.css";
+@import "../node_modules/@syncfusion/ej2-buttons/styles/material.css";
+@import "../node_modules/@syncfusion/ej2-calendars/styles/material.css";
+@import "../node_modules/@syncfusion/ej2-dropdowns/styles/material.css";
+@import "../node_modules/@syncfusion/ej2-inputs/styles/material.css";
+@import "../node_modules/@syncfusion/ej2-lists/styles/material.css";
+@import "../node_modules/@syncfusion/ej2-navigations/styles/material.css";
+@import "../node_modules/@syncfusion/ej2-popups/styles/material.css";
+@import "../node_modules/@syncfusion/ej2-splitbuttons/styles/material.css";
+@import "../node_modules/@syncfusion/ej2-react-schedule/styles/material.css";
+
+/* Custom Calendar Styles - 심플하고 모던한 디자인 */
+.calendar-wrapper .e-calendar {
+  border: none !important;
+  box-shadow: none !important;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+  background: transparent !important;
+  padding: 0 !important;
+}
+
+.calendar-wrapper {
+  overflow: hidden !important;
+}
+
+/* 캘린더 헤더 (월/년 표시) */
+.calendar-wrapper .e-calendar .e-header {
+  padding: 12px 0 !important;
+  border-bottom: 1px solid #f3f4f6 !important;
+  margin-bottom: 8px !important;
+}
+
+.calendar-wrapper .e-calendar .e-header .e-title {
+  font-weight: 600 !important;
+  color: #111827 !important;
+  font-size: 15px !important;
+  letter-spacing: -0.02em !important;
+}
+
+.dark .calendar-wrapper .e-calendar .e-header .e-title {
+  color: #f3f4f6;
+}
+
+/* 네비게이션 화살표 버튼 */
+.calendar-wrapper .e-calendar .e-header .e-icon-container {
+  border-radius: 6px !important;
+  transition: all 0.2s ease !important;
+}
+
+.calendar-wrapper .e-calendar .e-header .e-icon-container .e-prev,
+.calendar-wrapper .e-calendar .e-header .e-icon-container .e-next {
+  color: #6b7280 !important;
+  font-size: 14px !important;
+  padding: 4px !important;
+}
+
+.calendar-wrapper .e-calendar .e-header .e-icon-container:hover {
+  background-color: #f9fafb !important;
+}
+
+.calendar-wrapper .e-calendar .e-header .e-icon-container .e-prev:hover,
+.calendar-wrapper .e-calendar .e-header .e-icon-container .e-next:hover {
+  color: #111827 !important;
+}
+
+/* 요일 헤더 */
+.calendar-wrapper .e-calendar .e-week-header {
+  padding: 8px 0 !important;
+}
+
+.calendar-wrapper .e-calendar .e-week-header th {
+  color: #6b7280 !important;
+  font-size: 11px !important;
+  font-weight: 600 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.05em !important;
+  padding: 8px 4px !important;
+}
+
+/* 날짜 셀 - 기본 스타일 유지, 색상만 변경 */
+.calendar-wrapper .e-calendar .e-content .e-cell {
+  color: #374151 !important;
+  cursor: pointer !important;
+}
+
+/* 호버 효과는 기본 스타일 유지 */
+
+/* 오늘 날짜 - 선택되지 않은 경우 테두리만 표시 */
+.calendar-wrapper .e-calendar .e-content .e-today:not(.e-selected) {
+  background-color: transparent !important;
+  background: transparent !important;
+  color: #111827 !important;
+  font-weight: 600 !important;
+  border-radius: 6px !important;
+  border: 1px solid #6366f1 !important;
+  border-color: #6366f1 !important;
+  box-shadow: none !important;
+  box-sizing: border-box !important;
+  padding: inherit !important;
+  margin: 0 !important;
+  height: auto !important;
+  min-height: auto !important;
+  line-height: inherit !important;
+}
+
+.calendar-wrapper .e-calendar .e-content .e-today:not(.e-selected):hover {
+  background-color: #f9fafb !important;
+  border-color: #4f46e5 !important;
+}
+
+/* 오늘 날짜이면서 선택된 경우 - 인디고 배경 */
+.calendar-wrapper .e-calendar .e-content .e-today.e-selected {
+  background-color: #6366f1 !important;
+  background: #6366f1 !important;
+  color: white !important;
+  font-weight: 600 !important;
+  border-radius: 6px !important;
+  border: none !important;
+  border-color: transparent !important;
+  box-shadow: none !important;
+}
+
+.calendar-wrapper .e-calendar .e-content .e-today.e-selected:hover {
+  background-color: #4f46e5 !important;
+  background: #4f46e5 !important;
+  border: none !important;
+  border-color: transparent !important;
+}
+
+/* 선택된 날짜 - 모든 빨간색 제거 */
+.calendar-wrapper .e-calendar .e-content .e-selected,
+.calendar-wrapper .e-calendar .e-content .e-selected.e-today,
+.calendar-wrapper .e-calendar .e-content .e-selected[style*="background"],
+.calendar-wrapper .e-calendar .e-content .e-selected[style*="border"],
+.calendar-wrapper .e-calendar .e-content td.e-selected,
+.calendar-wrapper .e-calendar .e-content td.e-selected.e-today {
+  background-color: #6366f1 !important;
+  background: #6366f1 !important;
+  color: white !important;
+  border-radius: 6px !important;
+  font-weight: 600 !important;
+  border: none !important;
+  border-color: transparent !important;
+  box-shadow: none !important;
+}
+
+.calendar-wrapper .e-calendar .e-content .e-selected:hover,
+.calendar-wrapper .e-calendar .e-content .e-selected.e-today:hover,
+.calendar-wrapper .e-calendar .e-content td.e-selected:hover {
+  background-color: #4f46e5 !important;
+  background: #4f46e5 !important;
+  border: none !important;
+  border-color: transparent !important;
+}
+
+/* Syncfusion 기본 선택 색상 완전 제거 */
+.calendar-wrapper .e-calendar .e-content .e-cell.e-selected,
+.calendar-wrapper .e-calendar .e-content .e-cell.e-today.e-selected,
+.calendar-wrapper .e-calendar .e-content td.e-cell.e-selected,
+.calendar-wrapper .e-calendar .e-content td.e-cell.e-today.e-selected {
+  background-color: #6366f1 !important;
+  background: #6366f1 !important;
+  border: none !important;
+  border-color: transparent !important;
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+/* 모든 빨간색 배경 완전 제거 - 더 구체적인 선택자 */
+.calendar-wrapper .e-calendar .e-content .e-selected[style],
+.calendar-wrapper .e-calendar .e-content .e-today[style],
+.calendar-wrapper .e-calendar .e-content .e-selected.e-today[style],
+.calendar-wrapper .e-calendar .e-content td[class*="e-selected"][style],
+.calendar-wrapper .e-calendar .e-content td[class*="e-today"][style] {
+  background-color: #6366f1 !important;
+  background: #6366f1 !important;
+  border: none !important;
+  border-color: transparent !important;
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+/* Pseudo-element (::before, ::after) 빨간색 제거 */
+.calendar-wrapper .e-calendar .e-content .e-selected::before,
+.calendar-wrapper .e-calendar .e-content .e-selected::after,
+.calendar-wrapper .e-calendar .e-content .e-today::before,
+.calendar-wrapper .e-calendar .e-content .e-today::after,
+.calendar-wrapper .e-calendar .e-content .e-selected.e-today::before,
+.calendar-wrapper .e-calendar .e-content .e-selected.e-today::after,
+.calendar-wrapper .e-calendar .e-content td.e-selected::before,
+.calendar-wrapper .e-calendar .e-content td.e-selected::after,
+.calendar-wrapper .e-calendar .e-content td.e-today::before,
+.calendar-wrapper .e-calendar .e-content td.e-today::after {
+  display: none !important;
+  background: none !important;
+  background-color: transparent !important;
+  border: none !important;
+}
+
+/* 모든 가능한 선택자로 빨간색 완전 제거 - 선택된 날짜만 */
+.calendar-wrapper .e-calendar .e-content td[class*="selected"],
+.calendar-wrapper .e-calendar .e-content .e-date-cell.e-selected,
+.calendar-wrapper .e-calendar .e-content .e-date-cell.e-selected.e-today,
+.calendar-wrapper .e-calendar .e-content table td.e-selected,
+.calendar-wrapper .e-calendar .e-content table td.e-selected.e-today {
+  background-color: #6366f1 !important;
+  background: #6366f1 !important;
+  border: none !important;
+  border-color: transparent !important;
+  outline: none !important;
+  box-shadow: none !important;
+  color: white !important;
+}
+
+/* 오늘 날짜 (선택되지 않은 경우) - 테두리만 */
+.calendar-wrapper .e-calendar .e-content td[class*="today"]:not([class*="selected"]),
+.calendar-wrapper .e-calendar .e-content .e-date-cell.e-today:not(.e-selected),
+.calendar-wrapper .e-calendar .e-content table td.e-today:not(.e-selected) {
+  background-color: transparent !important;
+  background: transparent !important;
+  border: 1px solid #6366f1 !important;
+  border-color: #6366f1 !important;
+  color: #111827 !important;
+  font-weight: 600 !important;
+  box-sizing: border-box !important;
+  padding: inherit !important;
+  margin: 0 !important;
+  height: auto !important;
+  min-height: auto !important;
+  line-height: inherit !important;
+}
+
+/* 내부 요소들도 빨간색 제거 */
+.calendar-wrapper .e-calendar .e-content .e-selected *,
+.calendar-wrapper .e-calendar .e-content .e-today *,
+.calendar-wrapper .e-calendar .e-content .e-selected.e-today * {
+  background-color: transparent !important;
+  background: transparent !important;
+  border: none !important;
+  color: inherit !important;
+}
+
+/* 캘린더 컨텐츠 영역 스크롤 제거 */
+.calendar-wrapper .e-calendar .e-content {
+  padding: 4px 0 !important;
+  overflow: hidden !important;
+  max-height: 300px !important;
+}
+
+.calendar-wrapper .e-calendar .e-content table {
+  height: auto !important;
+  max-height: 300px !important;
+}
+
+/* 다른 달 날짜 (비활성화) */
+.calendar-wrapper .e-calendar .e-content .e-other-month {
+  color: #d1d5db !important;
+}
+
+.calendar-wrapper .e-calendar .e-content .e-other-month:hover {
+  background-color: #fafafa !important;
+  color: #9ca3af !important;
+}
+
+
+/* Sidebar Scrollbar Styling */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #fafafa;
+}
+
+.dark ::-webkit-scrollbar-track {
+  background: #374151;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #d1d5db;
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #9ca3af;
+}
+
+/* Syncfusion Schedule Component Full Width */
+.e-schedule {
+  width: 100% !important;
+  max-width: 100% !important;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+}
+
+.e-schedule .e-content-wrap {
+  width: 100% !important;
+}
+
+.e-schedule .e-content-table {
+  width: 100% !important;
+}
+
+/* Syncfusion Schedule Component - 기본 스타일 유지, 최소한의 오버라이드만 */
+
+
+/* 스크롤바 스타일 (캘린더 내부) */
+.e-schedule .e-content-wrap::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+.e-schedule .e-content-wrap::-webkit-scrollbar-track {
+  background: #fafafa;
+}
+
+.e-schedule .e-content-wrap::-webkit-scrollbar-thumb {
+  background: #d1d5db;
+  border-radius: 4px;
+}
+
+.e-schedule .e-content-wrap::-webkit-scrollbar-thumb:hover {
+  background: #9ca3af;
+}
+
+/* Hide Syncfusion Trial License Banner */
+.e-control.e-schedule .e-header-content .e-toolbar-item.e-toolbar-template,
+.e-control.e-schedule .e-header-content .e-toolbar-item.e-toolbar-template .e-trial-wrapper,
+.e-control.e-schedule .e-header-content .e-toolbar-item.e-toolbar-template .e-trial-wrapper .e-trial-text,
+div[id*="syncfusion-trial"],
+div[class*="e-trial"],
+.e-trial-wrapper {
+  display: none !important;
+  visibility: hidden !important;
+  height: 0 !important;
+  overflow: hidden !important;
+}
+
+/* Hide Syncfusion Trial Banner - General approach */
+body > div:first-child[style*="position: fixed"],
+body > div:first-child[style*="z-index"][style*="9999"],
+.e-trial-banner,
+.e-trial-wrapper {
+  display: none !important;
+  visibility: hidden !important;
+  height: 0 !important;
+  overflow: hidden !important;
+  opacity: 0 !important;
+}
+
+
